@@ -2,7 +2,10 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ master ] # หรือเปลี่ยนเป็น master ถ้าสาขาหลักของคุณชื่อ master
+    branches: [ master ] # หรือ master ตามชื่อสาขาหลักของคุณ
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
   contents: read
@@ -20,6 +23,14 @@ jobs:
     steps:
       - name: Checkout your repository
         uses: actions/checkout@v4
+
+      # บังคับให้ระบบใช้ Node.js เวอร์ชัน 22 ตามที่ Astro v6 ต้องการ
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
       - name: Install, build, and upload your site
         uses: withastro/action@v3
 
