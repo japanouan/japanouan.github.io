@@ -9,5 +9,4 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   site: 'https://japanouan.github.io', 
-  base: '/Portfolio/', 
 });
