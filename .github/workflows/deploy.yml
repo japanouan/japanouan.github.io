@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ master ] # หรือ master ตามชื่อสาขาหลักของคุณ
+    branches: [ master ] # มั่นใจว่าชื่อสาขาถูกต้องตามโปรเจกต์ของคุณนะครับ
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -24,15 +24,26 @@ jobs:
       - name: Checkout your repository
         uses: actions/checkout@v4
 
-      # บังคับให้ระบบใช้ Node.js เวอร์ชัน 22 ตามที่ Astro v6 ต้องการ
+      # 1. บังคับใช้ Node.js v24 ตัวใหม่ล่าสุด
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: 'npm'
 
-      - name: Install, build, and upload your site
-        uses: withastro/action@v3
+      # 2. ติดตั้ง Package ต่างๆ ในโปรเจกต์
+      - name: Install dependencies
+        run: npm ci
+
+      # 3. รันคำสั่ง Build ของ Astro (จะได้ไฟล์ในโฟลเดอร์ dist)
+      - name: Build Astro project
+        run: npm run build
+
+      # 4. แพ็กไฟล์ที่ Build เสร็จแล้วเพื่อเตรียมนำไปปล่อยออนไลน์
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist # โฟลเดอร์ปลายทางที่ Astro build ออกมา
 
   deploy:
     needs: build
