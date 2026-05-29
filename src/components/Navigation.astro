@@ -1,0 +1,185 @@
+---
+const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<nav>
+  <div class="container nav-container">
+    <a href="#hero" class="logo">Chaiyapong</a>
+    <div class="nav-links">
+      {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+        <svg
+          class="sun-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg
+          class="moon-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const themeToggle = document.getElementById("themeToggle");
+
+  const getTheme = (): "dark" | "light" => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme") as "dark" | "light";
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  };
+
+  const setTheme = (theme: "dark" | "light") => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("theme", theme);
+  };
+
+  setTheme(getTheme());
+
+  themeToggle?.addEventListener("click", () => {
+    const isDark = document.documentElement.classList.contains("dark");
+    setTheme(isDark ? "light" : "dark");
+  });
+</script>
+
+<style>
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(var(--bg-primary-rgb), 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Support for rgba with var requires rgb components, 
+     but we can simulate it with a solid color with opacity or just use var(--bg-primary) if we add a tiny bit of opacity differently. 
+     For now, we'll use a hardcoded fallback or CSS trick. Let's use the colors directly with a fallback. */
+  :global(:root) {
+    --bg-primary-rgb: 248, 250, 252;
+    ::selection {
+      background-color: rgb(15, 17, 23);
+      color: #fff;
+    }
+  }
+  :global(.dark) {
+    --bg-primary-rgb: 15, 17, 23;
+    ::selection {
+      background-color: rgb(248, 250, 252);
+      color: #0f172a;
+    }
+  }
+
+  nav {
+    background-color: rgba(var(--bg-primary-rgb), 0.9);
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+  }
+
+  .logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -1px;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-links a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--accent);
+  }
+
+  .theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+  }
+
+  :global(.dark) .sun-icon {
+    display: none;
+  }
+  :global(.dark) .moon-icon {
+    display: block;
+  }
+
+  :global(:root:not(.dark)) .sun-icon {
+    display: block;
+  }
+  :global(:root:not(.dark)) .moon-icon {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    .nav-links a {
+      display: none;
+    }
+    .nav-links .theme-toggle {
+      display: block;
+    }
+  }
+</style>

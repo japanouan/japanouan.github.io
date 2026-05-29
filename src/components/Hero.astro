@@ -1,0 +1,201 @@
+---
+
+---
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-content fade-in">
+    <h1>Chaiyapong Jaroonrotjananan</h1>
+    <div class="hero-role">
+      <span id="typing-text">&nbsp;</span><span class="cursor">|</span>
+    </div>
+    <p class="hero-tagline">
+      A Junior Software Engineer who enjoys building backend systems and
+      managing databases, dedicated to writing clean, secure, and efficient
+      code.
+    </p>
+
+    <div class="btn-group">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="/resume.pdf" target="_blank" class="btn btn-outline"
+        >Download Resume</a
+      >
+    </div>
+  </div>
+</section>
+
+<script>
+  const roles = [
+    "Full Stack Developer",
+    "Software Engineer",
+    "Backend Developer",
+  ];
+  let i = 0;
+  let timer;
+
+  function typingEffect() {
+    let role = roles[i].split("");
+
+    const typingLoop = () => {
+      const targetElement = document.getElementById("typing-text");
+      if (!targetElement) return;
+      if (role.length > 0) {
+        targetElement.innerHTML += role.shift();
+      } else {
+        setTimeout(deletingEffect, 2000);
+        return false;
+      }
+
+      timer = setTimeout(typingLoop, 60);
+    };
+
+    typingLoop();
+  }
+
+  function deletingEffect() {
+    let role = roles[i].split("");
+
+    const deletingLoop = () => {
+      const targetElement = document.getElementById("typing-text");
+      if (!targetElement) return;
+      if (role.length > 0) {
+        role.pop();
+        targetElement.innerHTML = role.join("");
+      } else {
+        if (roles.length > i + 1) {
+          i++;
+        } else {
+          i = 0;
+        }
+        setTimeout(typingEffect, 500);
+        return false;
+      }
+
+      timer = setTimeout(deletingLoop, 60);
+    };
+
+    deletingLoop();
+  }
+
+  document.addEventListener("DOMContentLoaded", typingEffect);
+</script>
+
+<style>
+  #hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 70px;
+  }
+
+  /* typing text */
+  .cursor {
+    font-weight: bold;
+    color: var(--accent);
+    animation: blink 0.75s infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  /* Subtle Animated Background */
+  .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(59, 130, 246, 0.1) 0%,
+      transparent 50%
+    );
+    animation: pulseBg 10s ease-in-out infinite alternate;
+  }
+
+  @keyframes pulseBg {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0.8;
+    }
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .hero-role {
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn-group {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn {
+    padding: 0.8rem 1.8rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary {
+    background-color: var(--accent);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--accent-hover);
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    border-color: var(--border);
+    color: var(--text-primary);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  @media (max-width: 767px) {
+    .hero-content {
+      text-align: center;
+    }
+    .btn-group {
+      justify-content: center;
+    }
+  }
+</style>

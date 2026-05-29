@@ -1,0 +1,576 @@
+---
+const projects = [
+  {
+    id: "RealOrFake (2025)",
+    title: "RealOrFake - Interpretable AI Media Literacy Platform",
+    subtitle: "React | FastAPI | Deep Neural Networks | Firebase Realtime DB",
+    tech: ["React", "FastAPI", "Deep Learning", "Firebase Realtime DB"],
+    detail: "An AI-powered full-stack web application combining React, FastAPI, and a custom CNN-BiLSTM-Attention model to gamify fake news identification for general users.",
+    overview: "With the rapid escalation of digital misinformation, general users and senior citizens frequently struggle to identify deceptive media without accessible, interactive training tools. RealOrFake addresses this gap by establishing an educational, gamified platform. The core architecture integrates a custom CNN-BiLSTM-Attention deep learning model trained on benchmark datasets (WELFake and LIAR) to classify news validity. By extracting raw attention weights and utilizing numerical interpolation, the system maps feature importance back to actual text tokens to isolate critical 'clue words'. These machine learning insights are combined with a secondary rule-based engine and delivered through a dynamic React frontend, translating complex data predictions into interactive challenge widgets and explainable performance feedback.",
+    responsibilities: [
+      "Developed an Interactive Web Application using React and FastAPI designed to improve fake news awareness among senior citizens through gamified, interactive quizzes.",
+      "End-to-End Model Training: Collected, cleaned, and standardized massive real-world news datasets to train a highly accurate AI system capable of identifying misinformation.",
+      "Designed and Developed Core UI Features, including the main gamified Challenge interface and an intuitive Result page that delivers immediate, clear feedback to non-technical users.",
+      "Integrated Advanced AI Models to analyze news articles, automatically identify suspicious context, and extract key clue words to guide users during challenges."
+    ],
+    image: "/images/projects/realorfake.png",
+    link: "https://example.com/RealOrFake",
+    "link-enable": false,
+    github: "https://github.com/japanouan/RealOrFake",
+  },
+  {
+    id: "ThaiWijit (2024)",
+    title: "ThaiWijit - End-to-End Thai Costume Rental System",
+    subtitle: "Laravel (PHP) | MySQL | Tailwind CSS",
+    tech: ["Laravel", "PHP", "MySQL", "Tailwind CSS"],
+    detail: "A multi-role marketplace and booking platform featuring automated service-provider workflows and secure, framework-level user authentication.",
+    overview: "Traditional costume rental and event coordination in Thailand are often fragmented, relying on manual scheduling across independent dress shops, photographers, and makeup artists. This fragmentation leads to high operational overhead and scheduling conflicts. ThaiWijit addresses this by unifying these stakeholders into a secure, multi-sided digital marketplace. The system automates end-to-end booking states, provides tailored administrative panels, and optimizes resource allocation for service vendors while maintaining robust data integrity and user data protection.",
+    responsibilities: [
+      "Co-developed a Full-Stack Marketplace Platform for Thai costume rentals, integrated with specialized booking systems for professional photographers and makeup artists.",
+      "Implemented Secure User Authentication by utilizing Laravel's industry-standard security features to protect user data, login credentials, and account access.",
+      "Built the Core Back-Office and Administration System, empowering platform admins to efficiently manage overall marketplace operations, user accounts, and platform data.",
+      "Designed the Freelancer Dashboard System, allowing service providers (photographers/makeup artists) to easily view job requests, accept bookings, and manage their working schedules.",
+      "Developed Secure Backend Business Logic using Laravel and MySQL to guarantee that financial transactions, booking records, and rentals are processed accurately and safely."
+    ],
+    image: "/images/projects/thaiwijit.png",
+    link: "https://example.com/lannalux-rental",
+    "link-enable": false,
+    github: "https://github.com/japanouan/ThaiWijit",
+  },
+  {
+    id: "Banking System (2026)",
+    title: "Banking System - Micro-Services Core Banking & Transaction Ledger",
+    subtitle: "React (TypeScript) | Spring Boot (Java) | PostgreSQL | REST API",
+    tech: ["React (TS)", "Spring Boot", "PostgreSQL", "REST APIs"],
+    detail: "An intensive learning project engineered with Spring Boot and type-safe TypeScript to model secure ledgers, transactions, and account lifecycle management.",
+    overview: "Financial systems require absolute atomic consistency, data integrity, and rigid type safety. This project was developed as an intensive learning leap to master enterprise-grade Spring Boot architectures and TypeScript type flows. The challenge was to build a secure core ledger that records and validates accounts and transactions, guaranteeing high reliability and preventing race conditions or currency mismatches.",
+    responsibilities: [
+      "Developed Core Banking Features, specifically the Account Management system and User/Admin Dashboards, utilizing an industry-standard stack of Spring Boot, React, and PostgreSQL.",
+      "Built the Account Ingestion and Detail Verification flows, allowing users to open accounts and view their balances safely using unique, randomized account IDs (UUIDs).",
+      "Connected Frontend Components to Secure REST APIs, ensuring all bank account data and messages are transferred using a highly structured and reliable data format.",
+      "Utilized TypeScript to ensure high code quality in the dashboard modules, preventing common programming errors and ensuring accurate displaying of financial information.",
+      "Designed Tailored Dashboard Interfaces, creating separate, organized views that display relevant account list metrics for standard customers and operational controls for administrators."
+    ],
+    image: "/images/projects/banking_system.png",
+    link: "https://example.com/apex-core",
+    "link-enable": false,
+    github: "https://github.com/japanouan/bank-system",
+  },
+  {
+    id: "PewPew (2025)",
+    title: "PewPew - Vanilla JS 2D Side-Scrolling Arcade Game",
+    subtitle: "HTML5 Canvas | CSS3 | Vanilla JavaScript",
+    tech: ["HTML5 Canvas", "CSS3", "Vanilla JS", "Game Logic"],
+    detail: "A high-performance 2D arcade game built from scratch using HTML5 Canvas and Vanilla JS, featuring object-oriented game logic and custom weapon upgrade systems.",
+    overview: "Building games without high-level engines requires a deep understanding of low-level rendering loops, mathematics, and state management. Developed in a two-person team, PewPew is a 2D side-scrolling shooter engineered entirely using Vanilla JavaScript and HTML5 Canvas. The challenge was to architect a fluid game loop from scratch, manage complex collision spaces, and handle dynamic object life cycles—such as automated background recycling for themed levels and weighted probability state machines for randomized enemy spawning.",
+    responsibilities: [
+      "Develop a collaborative 2D game project, building the core gameplay loop and background systems from scratch using Vanilla JavaScript and HTML5 Canvas.",
+      "Designed and Programmed Core Gameplay Mechanics, incorporating systems for player movement, weapon upgrading, and seamless level transitions via continuous background recycling.",
+      "Created a Randomized Enemy Generation System using custom mathematical probabilities to dynamically spawn various enemy types, including rare elite monsters that award players special power-ups.",
+      "Applied Advanced Software Design Principles (OOP) to build reusable code structures, making it easy to add new monster variants with customized sizes, health pools, and attributes.",
+      "Managed Sprite Sheet Animation Logic and Collision Detection, writing custom frame-rate controllers to sync character animations and real-time bounding boxes using pure JavaScript."
+    ],
+    image: "/images/projects/pewpew.png",
+    link: "https://example.com/pewpew-2d",
+    "link-enable": false,
+    github: "https://github.com/japanouan/PEWPEW",
+  },
+];
+---
+
+<section id="projects" class="container">
+  <h2 class="section-title fade-in">Projects</h2>
+
+  <div class="projects-grid fade-in">
+    {
+      projects.map((project, index) => (
+        <div class="project-card" data-project-index={index} role="button" aria-haspopup="dialog" tabindex="0">
+          <div class="project-card-image-wrapper">
+            <img src={project.image} alt={project.title} class="project-card-image" loading="lazy" />
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">{project.title.split(" - ")[0]}</h3>
+            <p class="project-desc">{project.detail}</p>
+            <div class="project-badges">
+              {project.tech.slice(0, 3).map((tech) => (
+                <span class="badge">{tech}</span>
+              ))}
+              {project.tech.length > 3 && <span class="badge badge-more">+{project.tech.length - 3}</span>}
+            </div>
+            <div class="project-footer">
+              <span class="view-more-link">
+                View details
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Project Modals -->
+  {
+    projects.map((project, index) => (
+      <div class="project-modal" id={`modal-${index}`} role="dialog" aria-modal="true" aria-labelledby={`modal-title-${index}`}>
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+          <button class="modal-close" aria-label="Close modal">&times;</button>
+          <div class="modal-image-wrapper">
+            <img src={project.image} alt={project.title} class="modal-image" loading="lazy" />
+          </div>
+          <div class="modal-body">
+            <h3 class="modal-title" id={`modal-title-${index}`}>{project.title}</h3>
+            
+            <div class="modal-subtitle-text">{project.subtitle}</div>
+
+            <div class="modal-section-label">Tech Stack</div>
+            <div class="modal-badges">
+              {project.tech.map((tech) => (
+                <span class="badge">{tech}</span>
+              ))}
+            </div>
+            
+            <div class="modal-section-label">Project Overview & Challenge</div>
+            <p class="modal-desc">{project.overview}</p>
+
+            <div class="modal-section-label">Key Responsibilities & Core Features</div>
+            <ul class="modal-responsibilities">
+              {project.responsibilities.map((resp) => (
+                <li>{resp}</li>
+              ))}
+            </ul>
+            
+            <div class="modal-actions">
+              {project.link && project["link-enable"] !== false && (
+                <a href={project.link} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  Visit Project
+                </a>
+              )}
+              {project.github && (
+                <a href={project.github} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  GitHub Repository
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</section>
+
+<script>
+  const cards = document.querySelectorAll('.project-card');
+  const modals = document.querySelectorAll('.project-modal');
+
+  cards.forEach((card) => {
+    // Open modal on click
+    card.addEventListener('click', () => {
+      const index = card.getAttribute('data-project-index');
+      const modal = document.getElementById(`modal-${index}`);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Stop scrolling of background page
+      }
+    });
+
+    // Support keyboard trigger (Enter/Space)
+    card.addEventListener('keydown', (e) => {
+      const keyEvent = e as KeyboardEvent;
+      if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
+        keyEvent.preventDefault();
+        const index = card.getAttribute('data-project-index');
+        const modal = document.getElementById(`modal-${index}`);
+        if (modal) {
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+    });
+  });
+
+  modals.forEach((modal) => {
+    const backdrop = modal.querySelector('.modal-backdrop');
+    const closeBtn = modal.querySelector('.modal-close');
+
+    const closeModal = () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = ''; // Re-enable background scrolling
+    };
+
+    backdrop?.addEventListener('click', closeModal);
+    closeBtn?.addEventListener('click', closeModal);
+
+    // Escape key press to close modal
+    document.addEventListener('keydown', (e) => {
+      const keyEvent = e as KeyboardEvent;
+      if (keyEvent.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  });
+</script>
+
+<style>
+  .container {
+    padding-bottom: 50px;
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .project-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card:hover, .project-card:focus-visible {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+  }
+
+  .project-card-image-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background-color: var(--bg-card);
+  }
+
+  .project-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .project-card:hover .project-card-image, .project-card:focus-visible .project-card-image {
+    transform: scale(1.05);
+  }
+
+  .project-content {
+    padding: 1.5rem 1.5rem 1.25rem 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--text-primary);
+  }
+
+  .project-desc {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    /* flex-grow: 1; */
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .project-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .badge {
+    background-color: rgba(59, 130, 246, 0.08);
+    color: var(--accent);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(59, 130, 246, 0.1);
+  }
+
+  .badge-more {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+
+  .project-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+    margin-top: 1rem;
+    /* margin-top: auto; */
+  }
+
+  .view-more-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: gap 0.2s ease;
+  }
+
+  .project-card:hover .view-more-link {
+    gap: 0.5rem;
+  }
+
+  .arrow-icon {
+    transition: transform 0.2s ease;
+  }
+
+  /* === Modal Styles === */
+  .project-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .project-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 17, 23, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .modal-container {
+    position: relative;
+    width: 90%;
+    max-width: 750px;
+    max-height: 85vh;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow-y: auto;
+    z-index: 10000;
+    transform: translateY(30px) scale(0.96);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  }
+
+  .project-modal.active .modal-container {
+    transform: translateY(0) scale(1);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(15, 17, 23, 0.6);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+    font-size: 1.6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10005;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    line-height: 1;
+    padding-bottom: 3px;
+  }
+
+  .modal-close:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+    transform: rotate(90deg) scale(1.05);
+  }
+
+  .modal-image-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    padding: 0 10px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background-color: var(--bg-card);
+    display: flex;
+    flex-direction: column;
+    /* align-items: ; */
+    justify-content: center;
+  }
+
+  .modal-image {
+    width: 100%;
+
+    /* height: 100%; */
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .project-modal.active .modal-image {
+    transform: scale(1.02);
+  }
+
+  .modal-body {
+    padding: 2.5rem;
+  }
+
+  .modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+  }
+
+  .modal-subtitle-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-section-label {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .modal-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-desc {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-responsibilities {
+    list-style-type: disc;
+    padding-left: 1.25rem;
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+
+  .modal-responsibilities li {
+    margin-bottom: 0.6rem;
+  }
+
+  .modal-responsibilities li::marker {
+    color: var(--accent);
+  }
+
+  .modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.75rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background-color: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--bg-card);
+    border-color: var(--text-primary);
+    transform: translateY(-2px);
+  }
+
+  .btn-icon {
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 576px) {
+    .modal-actions {
+      flex-direction: row;
+    }
+    .btn {
+      flex: 1;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .btn {
+      flex: 0 0 auto;
+    }
+  }
+</style>
