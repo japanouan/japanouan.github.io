@@ -1,0 +1,126 @@
+---
+const navLinks = [
+  { idx: "00", label: "Home", href: "#home" },
+  { idx: "01", label: "About", href: "#about" },
+  { idx: "02", label: "Skills", href: "#skills" },
+  { idx: "03", label: "Projects", href: "#projects" },
+  { idx: "04", label: "Experience", href: "#experience" },
+];
+---
+
+<!-- mobile top bar -->
+<div class="topbar">
+  <div class="tb-brand"><span class="m">CJ</span> CHAIYAPONG</div>
+  <nav class="tb-nav">
+    {navLinks.map((link) => <a href={link.href} data-nav={link.label.toLowerCase()}>{link.label.toUpperCase()}</a>)}
+  </nav>
+</div>
+
+<!-- ---------- SIDEBAR ---------- -->
+<aside class="sidebar">
+  <div class="brand">
+    <div class="mark">CJ</div>
+    <div class="who"><b>CHAIYAPONG</b><span>JAROONROTJANANAN</span></div>
+  </div>
+  <nav class="nav">
+    <div class="navlabel">// NAVIGATION</div>
+    {navLinks.map((link) => (
+      <a href={link.href} data-nav={link.label.toLowerCase()}>
+        <span class="idx">{link.idx}</span><span class="bar"></span>{link.label.toUpperCase()}<span class="dot"></span>
+      </a>
+    ))}
+  </nav>
+  <div class="side-foot">
+    <div class="stat"><span class="led"></span> STATUS: OPEN TO WORK</div>
+    <div class="stat" style="color:var(--faint)">LOC: THAILAND · GMT+7</div>
+    <div class="socials">
+      <a href="https://github.com/japanouan" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GITHUB</a>
+      <a href="https://www.linkedin.com/in/chaiyapong-jar" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LINKEDIN</a>
+      <a href="mailto:chaiyapong.jar@gmail.com" aria-label="Email">EMAIL</a>
+    </div>
+  </div>
+</aside>
+
+<script>
+  /* ---------- scrollspy ---------- */
+  (function () {
+    const links = [...document.querySelectorAll<HTMLAnchorElement>('.nav a, .tb-nav a')];
+    const secs = ['home', 'about', 'skills', 'projects', 'experience']
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => !!el);
+    function setActive(id: string) {
+      links.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    }
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    secs.forEach((s) => io.observe(s));
+    setActive('home');
+  })();
+</script>
+
+<style>
+  /* ---------- SIDEBAR ---------- */
+  .sidebar {
+    position: fixed; top: 0; bottom: 0; left: 0; width: var(--sidebar-w);
+    z-index: 20; display: flex; flex-direction: column;
+    padding: 26px 0;
+    background: linear-gradient(180deg, var(--panel) 0%, var(--bg-2) 100%);
+    border-right: 1px solid var(--line);
+  }
+  .brand { display: flex; align-items: center; gap: 11px; padding: 0 26px 26px; border-bottom: 1px solid var(--line); }
+  .brand .mark {
+    width: 38px; height: 38px; border: 1.5px solid var(--acc-line);
+    display: grid; place-items: center; font-family: var(--disp); font-weight: 700; font-size: 18px;
+    color: var(--accent); letter-spacing: 1px; position: relative;
+    box-shadow: 0 0 calc(14px*var(--glow)) var(--acc-soft) inset, 0 0 calc(10px*var(--glow)) var(--acc-soft);
+  }
+  .brand .mark::after { content: ""; position: absolute; inset: 3px; border: 1px solid var(--line-2); }
+  .brand .who { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand .who b { font-family: var(--disp); font-weight: 700; font-size: 15px; letter-spacing: .5px; }
+  .brand .who span { font-family: var(--mono); font-size: 9.5px; color: var(--muted); letter-spacing: 1px; margin-top: 2px; }
+
+  .nav { display: flex; flex-direction: column; gap: 2px; padding: 22px 0; flex: 1; }
+  .nav .navlabel { font-family: var(--mono); font-size: 9px; letter-spacing: 2.5px; color: var(--faint); padding: 0 26px 12px; }
+  .nav a {
+    position: relative; display: flex; align-items: center; gap: 13px;
+    padding: 11px 26px; color: var(--muted);
+    font-family: var(--disp); font-weight: 600; font-size: 15.5px; letter-spacing: 1.2px;
+    transition: color .25s, background .25s;
+  }
+  .nav a .idx { font-family: var(--mono); font-size: 10px; font-weight: 500; color: var(--faint); transition: color .25s; }
+  .nav a .bar { position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 3px; height: 0; background: var(--accent); transition: height .28s cubic-bezier(.5,0,.2,1); box-shadow: 0 0 calc(10px*var(--glow)) var(--accent); }
+  .nav a:hover { color: var(--text); }
+  .nav a:hover .idx { color: var(--muted); }
+  .nav a.active { color: var(--accent); background: linear-gradient(90deg, var(--acc-soft), transparent 70%); }
+  .nav a.active .idx { color: var(--accent); }
+  .nav a.active .bar { height: 64%; }
+  .nav a.active .dot { opacity: 1; }
+  .nav a .dot { margin-left: auto; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: 0; box-shadow: 0 0 calc(8px*var(--glow)) var(--accent); }
+  .nav a.active .dot { animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.7); opacity: .45; } }
+
+  .side-foot { padding: 18px 26px 4px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 10px; color: var(--muted); }
+  .side-foot .stat { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .side-foot .led { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 calc(8px*var(--glow)) var(--accent); animation: pulse 1.8s infinite; }
+  .side-foot .socials { display: flex; gap: 14px; margin-top: 12px; font-size: 10px; letter-spacing: 1px; }
+  .side-foot .socials a { color: var(--faint); transition: color .2s; }
+  .side-foot .socials a:hover { color: var(--accent); }
+
+  /* mobile top bar */
+  .topbar { display: none; }
+
+  @media (max-width: 760px) {
+    .sidebar { display: none; }
+    .topbar {
+      display: flex; position: fixed; top: 0; left: 0; right: 0; z-index: 30; height: 54px;
+      align-items: center; justify-content: space-between; padding: 0 18px;
+      background: rgba(10, 10, 10, .85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+    }
+    .topbar .tb-brand { display: flex; align-items: center; gap: 9px; font-family: var(--disp); font-weight: 700; letter-spacing: 1px; }
+    .topbar .tb-brand .m { width: 28px; height: 28px; border: 1.5px solid var(--acc-line); display: grid; place-items: center; color: var(--accent); font-size: 13px; }
+    .topbar .tb-nav { display: flex; gap: 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 1px; overflow-x: auto; }
+    .topbar .tb-nav a { color: var(--muted); white-space: nowrap; }
+    .topbar .tb-nav a.active { color: var(--accent); }
+  }
+</style>

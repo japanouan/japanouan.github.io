@@ -11,11 +11,11 @@ const projects = [
       "Developed an Interactive Web Application using React and FastAPI designed to improve fake news awareness among senior citizens through gamified, interactive quizzes.",
       "End-to-End Model Training: Collected, cleaned, and standardized massive real-world news datasets to train a highly accurate AI system capable of identifying misinformation.",
       "Designed and Developed Core UI Features, including the main gamified Challenge interface and an intuitive Result page that delivers immediate, clear feedback to non-technical users.",
-      "Integrated Advanced AI Models to analyze news articles, automatically identify suspicious context, and extract key clue words to guide users during challenges."
+      "Integrated Advanced AI Models to analyze news articles, automatically identify suspicious context, and extract key clue words to guide users during challenges.",
     ],
     image: "/images/projects/realorfake.png",
-    link: "https://example.com/RealOrFake",
-    "link-enable": false,
+    link: "https://real-or-fake-blush.vercel.app/",
+    "link-enable": true,
     github: "https://github.com/japanouan/RealOrFake",
   },
   {
@@ -30,7 +30,7 @@ const projects = [
       "Implemented Secure User Authentication by utilizing Laravel's industry-standard security features to protect user data, login credentials, and account access.",
       "Built the Core Back-Office and Administration System, empowering platform admins to efficiently manage overall marketplace operations, user accounts, and platform data.",
       "Designed the Freelancer Dashboard System, allowing service providers (photographers/makeup artists) to easily view job requests, accept bookings, and manage their working schedules.",
-      "Developed Secure Backend Business Logic using Laravel and MySQL to guarantee that financial transactions, booking records, and rentals are processed accurately and safely."
+      "Developed Secure Backend Business Logic using Laravel and MySQL to guarantee that financial transactions, booking records, and rentals are processed accurately and safely.",
     ],
     image: "/images/projects/thaiwijit.png",
     link: "https://example.com/lannalux-rental",
@@ -49,7 +49,7 @@ const projects = [
       "Built the Account Ingestion and Detail Verification flows, allowing users to open accounts and view their balances safely using unique, randomized account IDs (UUIDs).",
       "Connected Frontend Components to Secure REST APIs, ensuring all bank account data and messages are transferred using a highly structured and reliable data format.",
       "Utilized TypeScript to ensure high code quality in the dashboard modules, preventing common programming errors and ensuring accurate displaying of financial information.",
-      "Designed Tailored Dashboard Interfaces, creating separate, organized views that display relevant account list metrics for standard customers and operational controls for administrators."
+      "Designed Tailored Dashboard Interfaces, creating separate, organized views that display relevant account list metrics for standard customers and operational controls for administrators.",
     ],
     image: "/images/projects/banking_system.png",
     link: "https://example.com/apex-core",
@@ -68,7 +68,7 @@ const projects = [
       "Designed and Programmed Core Gameplay Mechanics, incorporating systems for player movement, weapon upgrading, and seamless level transitions via continuous background recycling.",
       "Created a Randomized Enemy Generation System using custom mathematical probabilities to dynamically spawn various enemy types, including rare elite monsters that award players special power-ups.",
       "Applied Advanced Software Design Principles (OOP) to build reusable code structures, making it easy to add new monster variants with customized sizes, health pools, and attributes.",
-      "Managed Sprite Sheet Animation Logic and Collision Detection, writing custom frame-rate controllers to sync character animations and real-time bounding boxes using pure JavaScript."
+      "Managed Sprite Sheet Animation Logic and Collision Detection, writing custom frame-rate controllers to sync character animations and real-time bounding boxes using pure JavaScript.",
     ],
     image: "/images/projects/pewpew.png",
     link: "https://example.com/pewpew-2d",
@@ -78,34 +78,69 @@ const projects = [
 ];
 ---
 
-<section id="projects" class="container">
-  <h2 class="section-title fade-in">Projects</h2>
+<section id="projects">
+  <div class="eyebrow reveal"><span class="num">04</span> / PROJECTS</div>
+  <h2 class="sec reveal d1">Selected builds</h2>
 
-  <div class="projects-grid fade-in">
+  <div class="subhead reveal">★ MAIN QUESTS</div>
+  <div class="proj-grid">
     {
-      projects.map((project, index) => (
-        <div class="project-card" data-project-index={index} role="button" aria-haspopup="dialog" tabindex="0">
-          <div class="project-card-image-wrapper">
-            <img src={project.image} alt={project.title} class="project-card-image" loading="lazy" />
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">{project.title.split(" - ")[0]}</h3>
-            <p class="project-desc">{project.detail}</p>
-            <div class="project-badges">
-              {project.tech.slice(0, 3).map((tech) => (
-                <span class="badge">{tech}</span>
-              ))}
-              {project.tech.length > 3 && <span class="badge badge-more">+{project.tech.length - 3}</span>}
+      projects.slice(0, 2).map((project, index) => (
+        <article
+          class={`proj reveal d${(index % 2) + 1}`}
+          data-project-index={index}
+          role="button"
+          aria-haspopup="dialog"
+          tabindex="0"
+        >
+          <div class="thumb">
+            <span class="pno">PROJ_{String(index + 1).padStart(2, "0")}</span>
+            <div class="pflags">
+              {project.github && <span class="pflag">{"</>"} SRC</span>}
+              {project.link && project["link-enable"] !== false && <span class="pflag"><i class="dot"></i> LIVE</span>}
             </div>
-            <div class="project-footer">
-              <span class="view-more-link">
-                View details
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </span>
+            <img src={project.image} alt={project.title} loading="lazy" />
+          </div>
+          <div class="body">
+            <h4>{project.title.split(" - ")[0]}</h4>
+            <p>{project.detail}</p>
+            <div class="ptags">
+              {project.tech.map((tech) => <span>{tech}</span>)}
+            </div>
+            <div class="links">
+              <span class="view-trigger">DETAILS <span class="ar">↗</span></span>
             </div>
           </div>
-        </div>
+        </article>
       ))
+    }
+  </div>
+
+  <div class="subhead reveal">◆ SIDE QUESTS</div>
+  <div class="mini-grid">
+    {
+      projects.slice(2, 4).map((project, i) => {
+        const index = i + 2;
+        return (
+          <div
+            class="mini"
+            data-project-index={index}
+            role="button"
+            aria-haspopup="dialog"
+            tabindex="0"
+          >
+            <div class="mico">◆</div>
+            <div class="mbody">
+              <h5>{project.title.split(" - ")[0]}</h5>
+              <p>{project.tech.slice(0, 3).join(" · ")}</p>
+              <div class="pflags">
+                {project.github && <span class="pflag">{"</>"} SRC</span>}
+                {project.link && project["link-enable"] !== false && <span class="pflag"><i class="dot"></i> LIVE</span>}
+              </div>
+            </div>
+          </div>
+        );
+      })
     }
   </div>
 
@@ -121,37 +156,30 @@ const projects = [
           </div>
           <div class="modal-body">
             <h3 class="modal-title" id={`modal-title-${index}`}>{project.title}</h3>
-            
             <div class="modal-subtitle-text">{project.subtitle}</div>
 
             <div class="modal-section-label">Tech Stack</div>
             <div class="modal-badges">
-              {project.tech.map((tech) => (
-                <span class="badge">{tech}</span>
-              ))}
+              {project.tech.map((tech) => <span class="badge">{tech}</span>)}
             </div>
-            
+
             <div class="modal-section-label">Project Overview & Challenge</div>
             <p class="modal-desc">{project.overview}</p>
 
             <div class="modal-section-label">Key Responsibilities & Core Features</div>
             <ul class="modal-responsibilities">
-              {project.responsibilities.map((resp) => (
-                <li>{resp}</li>
-              ))}
+              {project.responsibilities.map((resp) => <li>{resp}</li>)}
             </ul>
-            
+
             <div class="modal-actions">
               {project.link && project["link-enable"] !== false && (
-                <a href={project.link} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  Visit Project
+                <a href={project.link} target="_blank" rel="noopener noreferrer" class="btn">
+                  LIVE DEMO <span class="ar">↗</span>
                 </a>
               )}
               {project.github && (
-                <a href={project.github} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                  GitHub Repository
+                <a href={project.github} target="_blank" rel="noopener noreferrer" class="btn ghost">
+                  SOURCE <span class="ar">↗</span>
                 </a>
               )}
             </div>
@@ -163,31 +191,25 @@ const projects = [
 </section>
 
 <script>
-  const cards = document.querySelectorAll('.project-card');
-  const modals = document.querySelectorAll('.project-modal');
+  const cards = document.querySelectorAll<HTMLElement>('.proj, .mini');
+  const modals = document.querySelectorAll<HTMLElement>('.project-modal');
+
+  function openModal(index: string | null) {
+    if (!index) return;
+    const modal = document.getElementById(`modal-${index}`);
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
 
   cards.forEach((card) => {
-    // Open modal on click
-    card.addEventListener('click', () => {
-      const index = card.getAttribute('data-project-index');
-      const modal = document.getElementById(`modal-${index}`);
-      if (modal) {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Stop scrolling of background page
-      }
-    });
-
-    // Support keyboard trigger (Enter/Space)
+    card.addEventListener('click', () => openModal(card.getAttribute('data-project-index')));
     card.addEventListener('keydown', (e) => {
       const keyEvent = e as KeyboardEvent;
       if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
         keyEvent.preventDefault();
-        const index = card.getAttribute('data-project-index');
-        const modal = document.getElementById(`modal-${index}`);
-        if (modal) {
-          modal.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        }
+        openModal(card.getAttribute('data-project-index'));
       }
     });
   });
@@ -198,13 +220,12 @@ const projects = [
 
     const closeModal = () => {
       modal.classList.remove('active');
-      document.body.style.overflow = ''; // Re-enable background scrolling
+      document.body.style.overflow = '';
     };
 
     backdrop?.addEventListener('click', closeModal);
     closeBtn?.addEventListener('click', closeModal);
 
-    // Escape key press to close modal
     document.addEventListener('keydown', (e) => {
       const keyEvent = e as KeyboardEvent;
       if (keyEvent.key === 'Escape' && modal.classList.contains('active')) {
@@ -215,362 +236,83 @@ const projects = [
 </script>
 
 <style>
-  .container {
-    padding-bottom: 50px;
-  }
-  .projects-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+  .subhead { font-family: var(--mono); font-size: 11px; letter-spacing: 3px; color: var(--muted); margin: 54px 0 22px; display: flex; align-items: center; gap: 12px; text-transform: uppercase; }
+  .subhead::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .mini-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .mini { display: flex; gap: 16px; align-items: center; border: 1px solid var(--line); background: var(--panel-2); padding: 16px; transition: .25s; cursor: pointer; outline: none; }
+  .mini:hover, .mini:focus-visible { border-color: var(--acc-line); box-shadow: 0 0 calc(20px*var(--glow)) var(--acc-soft); }
+  .mini .mico { width: 46px; height: 46px; flex-shrink: 0; border: 1px solid var(--acc-line); display: grid; place-items: center; color: var(--accent); font-family: var(--mono); font-size: 18px; box-shadow: 0 0 calc(10px*var(--glow)) var(--acc-soft) inset; }
+  .mini .mbody h5 { font-family: var(--disp); font-weight: 600; font-size: 18px; letter-spacing: .5px; margin-bottom: 3px; }
+  .mini .mbody p { font-size: 12.5px; color: var(--muted); font-family: var(--mono); }
 
-  .project-card {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    outline: none;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .project-card:hover, .project-card:focus-visible {
-    transform: translateY(-6px);
-    border-color: var(--accent);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
-  }
-
-  .project-card-image-wrapper {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border-bottom: 1px solid var(--border);
-    background-color: var(--bg-card);
-  }
-
-  .project-card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-
-  .project-card:hover .project-card-image, .project-card:focus-visible .project-card-image {
-    transform: scale(1.05);
-  }
-
-  .project-content {
-    padding: 1.5rem 1.5rem 1.25rem 1.5rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .project-title {
-    font-size: 1.35rem;
-    margin-bottom: 0.75rem;
-    font-weight: 700;
-    line-height: 1.4;
-    color: var(--text-primary);
-  }
-
-  .project-desc {
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    /* flex-grow: 1; */
-    line-height: 1.6;
-    font-size: 0.95rem;
-  }
-
-  .project-badges {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
-  }
-
-  .badge {
-    background-color: rgba(59, 130, 246, 0.08);
-    color: var(--accent);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    border: 1px solid rgba(59, 130, 246, 0.1);
-  }
-
-  .badge-more {
-    background-color: transparent;
-    color: var(--text-secondary);
-    border: 1px solid var(--border);
-  }
-
-  .project-footer {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    border-top: 1px solid var(--border);
-    padding-top: 1.25rem;
-    margin-top: 1rem;
-    /* margin-top: auto; */
-  }
-
-  .view-more-link {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--accent);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    transition: gap 0.2s ease;
-  }
-
-  .project-card:hover .view-more-link {
-    gap: 0.5rem;
-  }
-
-  .arrow-icon {
-    transition: transform 0.2s ease;
-  }
+  .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .proj { border: 1px solid var(--line); background: var(--panel); overflow: hidden; display: flex; flex-direction: column; transition: .28s; position: relative; cursor: pointer; outline: none; }
+  .proj:hover, .proj:focus-visible { transform: translateY(-5px); border-color: var(--acc-line); box-shadow: 0 16px 50px rgba(0,0,0,.5), 0 0 calc(30px*var(--glow)) var(--acc-soft); }
+  .proj .thumb { position: relative; aspect-ratio: 16/10; border-bottom: 1px solid var(--line); overflow: hidden; }
+  .proj .thumb img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .5s ease; }
+  .proj:hover .thumb img { transform: scale(1.05); }
+  .proj .pno { position: absolute; top: 12px; left: 12px; font-family: var(--mono); font-size: 10px; letter-spacing: 1px; color: var(--accent); background: rgba(0,0,0,.6); border: 1px solid var(--acc-line); padding: 4px 9px; z-index: 2; }
+  .pflags { position: absolute; top: 12px; right: 12px; display: flex; gap: 6px; z-index: 2; }
+  .pflag { display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9.5px; letter-spacing: .5px; color: var(--text); background: rgba(0,0,0,.7); border: 1px solid var(--line-2); padding: 4px 8px; }
+  .pflag .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 calc(6px*var(--glow)) var(--accent); }
+  .mini .mbody .pflags { position: static; margin-top: 8px; }
+  .mini .mbody .pflag { background: transparent; border-color: var(--line); }
+  .proj .body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+  .proj h4 { font-family: var(--disp); font-weight: 700; font-size: 24px; letter-spacing: .5px; margin-bottom: 9px; }
+  .proj p { color: var(--muted); font-size: 14.5px; margin-bottom: 16px; flex: 1; }
+  .proj .ptags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 18px; }
+  .proj .ptags span { font-family: var(--mono); font-size: 10px; letter-spacing: .5px; color: var(--faint); border: 1px solid var(--line); padding: 4px 9px; }
+  .proj .links { display: flex; gap: 16px; font-family: var(--mono); font-size: 11px; letter-spacing: 1px; }
+  .view-trigger { color: var(--muted); display: inline-flex; align-items: center; gap: 6px; transition: .2s; }
+  .proj:hover .view-trigger { color: var(--accent); }
+  .view-trigger .ar { transition: transform .2s; }
+  .proj:hover .view-trigger .ar { transform: translate(2px, -2px); }
 
   /* === Modal Styles === */
-  .project-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .project-modal.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .modal-backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(15, 17, 23, 0.55);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
-
+  .project-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; z-index: 9999; opacity: 0; pointer-events: none; transition: opacity .3s cubic-bezier(.4,0,.2,1); }
+  .project-modal.active { opacity: 1; pointer-events: auto; }
+  .modal-backdrop { position: absolute; inset: 0; background: rgba(5,6,5,.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
   .modal-container {
-    position: relative;
-    width: 90%;
-    max-width: 750px;
-    max-height: 85vh;
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow-y: auto;
-    z-index: 10000;
-    transform: translateY(30px) scale(0.96);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+    position: relative; width: 90%; max-width: 750px; max-height: 85vh;
+    background: var(--panel); border: 1px solid var(--acc-line); overflow-y: auto; z-index: 10000;
+    transform: translateY(30px) scale(.96); transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,.6), 0 0 calc(40px*var(--glow)) var(--acc-soft);
   }
-
-  .project-modal.active .modal-container {
-    transform: translateY(0) scale(1);
-  }
-
+  .project-modal.active .modal-container { transform: translateY(0) scale(1); }
   .modal-close {
-    position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    background: rgba(15, 17, 23, 0.6);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: white;
-    font-size: 1.6rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10005;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    line-height: 1;
-    padding-bottom: 3px;
+    position: absolute; top: 1.25rem; right: 1.25rem; width: 2.5rem; height: 2.5rem;
+    background: rgba(0,0,0,.6); border: 1px solid var(--line-2); color: var(--text);
+    font-size: 1.6rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    z-index: 10005; transition: all .2s cubic-bezier(.4,0,.2,1); line-height: 1; padding-bottom: 3px;
   }
-
-  .modal-close:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: white;
-    transform: rotate(90deg) scale(1.05);
+  .modal-close:hover { background: var(--accent); border-color: var(--accent); color: #000; transform: rotate(90deg); }
+  .modal-image-wrapper { width: 100%; aspect-ratio: 16/9; border-bottom: 1px solid var(--line); background: var(--bg-2); overflow: hidden; }
+  .modal-image { width: 100%; height: 100%; object-fit: cover; }
+  .modal-body { padding: 2.5rem; }
+  .modal-title { font-family: var(--disp); font-weight: 700; font-size: 1.65rem; letter-spacing: .5px; margin-bottom: .5rem; line-height: 1.3; text-transform: uppercase; }
+  .modal-subtitle-text { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 1.5rem; }
+  .modal-section-label { font-family: var(--mono); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: .75rem; margin-top: 1.75rem; }
+  .modal-badges { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .modal-badges .badge { font-family: var(--mono); font-size: 10px; color: var(--faint); border: 1px solid var(--line); padding: 4px 9px; }
+  .modal-desc { color: var(--muted); font-size: .95rem; line-height: 1.75; margin-bottom: 1.5rem; }
+  .modal-responsibilities { list-style: disc; padding-left: 1.25rem; color: var(--muted); font-size: .92rem; line-height: 1.75; margin-bottom: 2rem; }
+  .modal-responsibilities li { margin-bottom: .6rem; }
+  .modal-responsibilities li::marker { color: var(--accent); }
+  .modal-actions { display: flex; flex-direction: column; gap: 1rem; border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 1rem; }
+  .modal-actions .btn {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 12px 20px; border: 1px solid var(--acc-line); color: var(--accent);
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px; transition: .22s;
   }
-
-  .modal-image-wrapper {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    padding: 0 10px;
-    overflow: hidden;
-    border-bottom: 1px solid var(--border);
-    background-color: var(--bg-card);
-    display: flex;
-    flex-direction: column;
-    /* align-items: ; */
-    justify-content: center;
-  }
-
-  .modal-image {
-    width: 100%;
-
-    /* height: 100%; */
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-
-  .project-modal.active .modal-image {
-    transform: scale(1.02);
-  }
-
-  .modal-body {
-    padding: 2.5rem;
-  }
-
-  .modal-title {
-    font-family: var(--font-heading);
-    font-size: 1.65rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-    line-height: 1.35;
-  }
-
-  .modal-subtitle-text {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-  }
-
-  .modal-section-label {
-    font-family: var(--font-heading);
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--accent);
-    margin-bottom: 0.75rem;
-    margin-top: 1.75rem;
-  }
-
-  .modal-badges {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
-  }
-
-  .modal-desc {
-    color: var(--text-secondary);
-    font-size: 1rem;
-    line-height: 1.75;
-    margin-bottom: 1.5rem;
-  }
-
-  .modal-responsibilities {
-    list-style-type: disc;
-    padding-left: 1.25rem;
-    color: var(--text-secondary);
-    font-size: 0.98rem;
-    line-height: 1.75;
-    margin-bottom: 2rem;
-  }
-
-  .modal-responsibilities li {
-    margin-bottom: 0.6rem;
-  }
-
-  .modal-responsibilities li::marker {
-    color: var(--accent);
-  }
-
-  .modal-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    padding: 0.85rem 1.75rem;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    text-align: center;
-    text-decoration: none;
-  }
-
-  .btn-primary {
-    background-color: var(--accent);
-    color: #fff;
-    border: 1px solid var(--accent);
-  }
-
-  .btn-primary:hover {
-    background-color: var(--accent-hover);
-    border-color: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25);
-  }
-
-  .btn-secondary {
-    background-color: transparent;
-    color: var(--text-primary);
-    border: 1px solid var(--border);
-  }
-
-  .btn-secondary:hover {
-    background-color: var(--bg-card);
-    border-color: var(--text-primary);
-    transform: translateY(-2px);
-  }
-
-  .btn-icon {
-    flex-shrink: 0;
-  }
+  .modal-actions .btn:hover { background: var(--acc-soft); box-shadow: 0 0 calc(20px*var(--glow)) var(--acc-soft); }
+  .modal-actions .btn.ghost { border-color: var(--line-2); color: var(--muted); }
+  .modal-actions .btn.ghost:hover { color: var(--text); box-shadow: none; background: rgba(255,255,255,.03); }
 
   @media (min-width: 576px) {
-    .modal-actions {
-      flex-direction: row;
-    }
-    .btn {
-      flex: 1;
-    }
+    .modal-actions { flex-direction: row; }
+    .modal-actions .btn { flex: 1; }
   }
-
-  @media (min-width: 768px) {
-    .projects-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .btn {
-      flex: 0 0 auto;
-    }
+  @media (max-width: 980px) {
+    .proj-grid, .mini-grid { grid-template-columns: 1fr; }
   }
 </style>

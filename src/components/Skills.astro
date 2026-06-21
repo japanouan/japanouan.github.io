@@ -1,0 +1,50 @@
+---
+const skillGroups = [
+  {
+    label: "Backend Framework",
+    tags: [".NET Core", "C#", "Spring Boot (Java)", "FastAPI (Python)", "Laravel (PHP)", "Express.js (Node.js)"],
+  },
+  {
+    label: "Databases & Tools",
+    tags: ["Oracle SQL", "PostgreSQL", "MySQL", "SQL Server", "Git / GitHub", "Swagger API"],
+  },
+  {
+    label: "System & Workflow",
+    tags: ["Azure DevOps (Version Control)", "Razor Pages"],
+  },
+  {
+    label: "Frontend Ecosystem",
+    tags: ["React", "Next.js", "Astro", "Tailwind CSS", "Bootstrap", "Ant Design", "Material UI", "HTML5 / CSS3 / JS"],
+  },
+];
+---
+
+<section id="skills">
+  <div class="eyebrow reveal"><span class="num">02</span> / SKILLS</div>
+  <h2 class="sec reveal d1">Loadout</h2>
+  <div class="skill-grid">
+    {skillGroups.map((group, i) => (
+      <div class={`skill-block reveal d${(i % 2) + 1}`}>
+        <h3><span class="hx">›</span> {group.label.toUpperCase()}</h3>
+        <div class="tags">
+          {group.tags.map((tag) => <span class="tag">{tag}</span>)}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .skill-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .skill-block { border: 1px solid var(--line); background: var(--panel); padding: 22px 22px 24px; transition: .25s; }
+  .skill-block:hover { border-color: var(--acc-line); box-shadow: 0 0 calc(26px*var(--glow)) var(--acc-soft); }
+  .skill-block h3 { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; color: var(--accent); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
+  .skill-block h3 .hx { color: var(--faint); }
+  .tags { display: flex; flex-wrap: wrap; gap: 9px; }
+  .tag { font-family: var(--mono); font-size: 12px; color: var(--muted); border: 1px solid var(--line-2); padding: 7px 12px; transition: .18s; cursor: default; background: rgba(255,255,255,.012); }
+  .tag:hover { color: var(--accent); border-color: var(--acc-line); box-shadow: 0 0 calc(12px*var(--glow)) var(--acc-soft); }
+
+  @media (max-width: 980px) {
+    .skill-grid { grid-template-columns: 1fr; }
+  }
+</style>

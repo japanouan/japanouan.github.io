@@ -2,63 +2,55 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="footer">
-  <div class="footer-container">
-    <p class="footer-copy">&copy; {year} Portfolio. All rights reserved.</p>
-    <div class="footer-links">
-      <a
-        href="https://github.com/japanouan"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="footer-link">GitHub</a
-      >
-      <a
-        href="https://www.linkedin.com/in/chaiyapong-jar"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="footer-link">LinkedIn</a
-      >
+<footer>
+  <div class="foot-cta">
+    <h3>Let's build<br>something <span class="accent">together.</span></h3>
+    <div class="foot-links">
+      <a href="mailto:chaiyapong.jar@gmail.com" class="btn" id="email-me-btn">EMAIL ME</a>
+      <a href="https://github.com/japanouan" target="_blank" rel="noopener noreferrer" class="btn ghost">GITHUB</a>
+      <a href="https://www.linkedin.com/in/chaiyapong-jar" target="_blank" rel="noopener noreferrer" class="btn ghost">LINKEDIN</a>
     </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© {year} CHAIYAPONG JAROONROTJANANAN</span>
+    <span>065-818-8674 · chaiyapong.jar@gmail.com</span>
+    <span>THAILAND · GMT+7</span>
   </div>
 </footer>
 
+<script>
+  const emailBtn = document.getElementById('email-me-btn');
+  emailBtn?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('chaiyapong.jar@gmail.com');
+      const original = emailBtn.textContent;
+      emailBtn.textContent = 'COPIED ✓';
+      setTimeout(() => { emailBtn.textContent = original; }, 1800);
+    } catch {
+      // clipboard unavailable — mailto: link still does its job
+    }
+  });
+</script>
+
 <style>
-  .footer {
-    background: rgba(10, 10, 20, 0.9);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 2rem 0;
+  footer { margin-left: var(--sidebar-w); position: relative; z-index: 5; padding: 60px 8vw 70px; border-top: 1px solid var(--line); background: linear-gradient(180deg, transparent, var(--bg-2)); }
+  .foot-cta { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+  .foot-cta h3 { font-family: var(--disp); font-weight: 700; font-size: clamp(26px, 4vw, 42px); text-transform: uppercase; letter-spacing: 1px; line-height: 1; }
+  .foot-cta h3 .accent { color: var(--accent); }
+  .foot-links { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 14px 24px; border: 1px solid var(--acc-line); color: var(--accent);
+    display: inline-flex; align-items: center; gap: 10px; cursor: pointer; background: transparent;
+    transition: .22s; position: relative;
   }
+  .btn::before { content: "["; opacity: .5; } .btn::after { content: "]"; opacity: .5; }
+  .btn:hover { background: var(--acc-soft); box-shadow: 0 0 calc(20px*var(--glow)) var(--acc-soft); color: #caffbe; }
+  .btn.ghost { border-color: var(--line-2); color: var(--muted); }
+  .btn.ghost:hover { color: var(--text); box-shadow: none; background: rgba(255,255,255,.03); }
+  .foot-bottom { display: flex; justify-content: space-between; margin-top: 46px; padding-top: 22px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; color: var(--faint); flex-wrap: wrap; gap: 10px; }
 
-  .footer-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .footer-copy {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.4);
-    font-size: 0.875rem;
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  .footer-link {
-    color: rgba(255, 255, 255, 0.5);
-    text-decoration: none;
-    font-size: 0.875rem;
-    transition: color 0.2s ease;
-  }
-
-  .footer-link:hover {
-    color: #fff;
+  @media (max-width: 760px) {
+    footer { margin-left: 0 !important; }
   }
 </style>
